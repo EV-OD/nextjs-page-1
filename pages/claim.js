@@ -28,7 +28,7 @@ function Claim() {
               <FcGoogle />
             </div>
             <div className="page p1" onClick={() => router.push('/login')}>
-              <FaFacebook fill="rgb(50,0,255)" width="50" />
+              <FaFacebook fill="#19AFFF" width="50" />
             </div>
             <div className="page">
               <svg

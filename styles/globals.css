@@ -1,7 +1,5 @@
 
-.__next{
-    height: 100vh;
-}
+
 html,
 body {
   padding: 0;
@@ -11,6 +9,10 @@ body {
   background-color: black;
   height: 100vh;
   /* overflow-y: hidden; */
+}
+
+.__next{
+    height:100vh;
 }
 
 a {

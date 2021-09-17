@@ -14,6 +14,12 @@
   margin-left: 20px;
   margin-top: 0;
 }
+
+.error{
+  display: none;
+  color: red;
+}
+
 .form {
   background: #f4f5ff;
   border: 7px solid #eceeff;
@@ -46,6 +52,7 @@
   height: 47.8px;
   margin-top: 20px;
   color: white;
+  cursor: pointer;
   font-size: 1.5em;
 }
 .form p {
